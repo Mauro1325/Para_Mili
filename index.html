@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Libro</title>
+
+    <!-- Fuentes -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap");
+
+      @font-face {
+        font-family: "Minecraft";
+        src: url("fonts/Minecraft.ttf");
+      }
+    </style>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Encabezado -->
+    <header></header>
+
+    <!-- Pantalla de inicio con libro y pluma -->
+    <div id="pantallaInicio" class="pantalla-inicio">
+      <img
+        src="/img/Libro_y_pluma.png"
+        alt="Libro de inicio"
+        class="imagen-inicio"
+      />
+    </div>
+
+    <!-- Contenedor principal del libro -->
+    <div id="libroCompleto">
+      <div class="fondo"></div>
+
+      <section class="carta">
+        <div class="humo-bocanada">
+          <!-- Nube que se mueve hacia arriba y derecha -->
+          <!-- <div class="nube"></div> -->
+          <!-- Nube que se mueve hacia arriba y izquierda -->
+          <!-- <div class="nube nube-izquierda"></div> -->
+        </div>
+        <div class="contorno">
+          <!-- Imagen de fondo del libro -->
+          <img src="/img/book_escalado.png" alt="Libro" class="imagen" />
+
+          <!-- Páginas del libro -->
+          <div class="mensaje">
+            <div class="pagina" id="pagina-0">
+              <h1>Para Sigma:</h1>
+              <p>
+                L Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+                illum maiores quo quaerat consequuntur ullam sint doloremque
+                harum non! Ea possimus perspiciatis enim nam explicabo velit id
+                quod cum voluptatibus. Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Sapiente magni eius fugiat ratione laborum
+                odio ea nostrum nemo voluptas at totam excepturi rem, non
+                tempora quia impedit amet porro culpa? Lorem, ipsum dolor sit
+                amet consectetur adipisicing elit. Delectus illum ut incidunt
+                totam eligendi? Quos, illo dolores esse delectus totam voluptate
+                praesentium, fugit eos deserunt omnis porro aliquam provident
+                laudantium? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Culpa dignissimos atque sint delectus perspiciatis neque
+                ad id nemo nulla. Beatae perferendis harum consectetur ullam
+                atque iusto. Cum totam ab iure! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat deleniti quis dolorem ipsam
+                beatae obcaecati dignissimos a consequatur debitis voluptatum
+                minus animi similique, molestias vel velit accusantium iusto at
+                excepturi. Lorem, ipsum dolor sit amet consectetur adipisicing
+                elit. Dolorum quidem asperiores laborum consectetur harum, quasi
+                doloremque labore neque quia iure reprehenderit voluptatum.
+                Animi praesentium quasi libero tenetur vero quod esse.orem ipsum
+                dolor sit amet consectetur adipisicing elit. Tempore iure
+                aliquam nobis omnis, distinctio sapiente, veritatis at, minima
+                fugiat officiis excepturi quae aperiam?
+              </p>
+            </div>
+
+            <div class="pagina" id="pagina-1">
+              <h1>Capítulo 2</h1>
+              <p>Texto largo texto largo texto largo texto largo texto largo</p>
+            </div>
+
+            <div class="pagina" id="pagina-2">
+              <h1>Última página</h1>
+              <p>Hola soy un sigma</p>
+            </div>
+          </div>
+
+          <!-- Flechas de navegación -->
+          <div class="flechas">
+            <img
+              src="/img/izq_page.png"
+              alt="Anterior"
+              id="flechaIzquierda"
+              class="flecha flecha-izquierda"
+            />
+            <img
+              src="/img/der_page.png"
+              alt="Siguiente"
+              id="flechaDerecha"
+              class="flecha flecha-derecha"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Pie de página -->
+    <footer></footer>
+
+    <!-- Script -->
+    <script src="js/script.js" defer></script>
+  </body>
+</html>

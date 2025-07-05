@@ -1,0 +1,327 @@
+@font-face {
+  font-family: "Minecraft";
+  src: url("fonts/Minecraft.ttf") format("truetype");
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes pasarPagina {
+  0% {
+    opacity: 0;
+    transform: translateX(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #131212;
+  box-sizing: border-box;
+}
+
+/* Pantalla de inicio con fondo azul y patrón */
+.pantalla-inicio {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    linear-gradient(
+      to bottom,
+      #0c2467 0%,
+      #1f3a7a 40%,
+      #2a4c92 70%,
+      #18264d 100%
+    );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: glow 3s ease-in-out infinite;
+  transition: opacity 0.5s ease;
+}
+
+.imagen-inicio {
+  max-width: 80%;
+  height: auto;
+  cursor: pointer;
+  filter: drop-shadow(1px 10px 20px #c60000);
+  transition: transform 0.3s ease;
+}
+
+.imagen-inicio:hover {
+  transform: scale(1.05);
+}
+
+/* Fondo azul para el libro */
+.fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    #0c2770 0%,
+    #2a4c92 25%,
+    #3d57a3 50%,
+    #173c86 75%,
+    #18264d 100%
+  );
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Contenedor principal de la carta */
+.carta {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Contorno del libro */
+.contorno {
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  max-width: 600px;
+  padding: 10px;
+  margin: 2px;
+  overflow: hidden; /* evita desbordes en el contenedor del libro */
+}
+
+/* Imagen del libro */
+.imagen {
+  user-select: none;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Área del mensaje */
+.mensaje {
+  /* background-color: #c600004e; */
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden; /* evita scroll lateral raro */
+  max-height: calc(100% - 180px);
+  margin: 65px 60px;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mensaje::-webkit-scrollbar {
+  width: 6px;
+}
+.mensaje::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+.mensaje::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Título */
+.mensaje h1 {
+  font-family: "Monsieur La Doulaise", cursive;
+  font-size: 60px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Contenido */
+.mensaje p {
+  font-family: Minecraft;
+  font-size: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Flechas de navegación */
+.flechas {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 80px;
+  user-select: none;
+  z-index: 10;
+}
+
+.flecha {
+  width: 70px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.flecha-derecha {
+  position: relative;
+  left: -30px;
+}
+
+.flecha:hover {
+  transform: scale(1.1);
+}
+
+/* Páginas */
+.pagina {
+  display: none;
+  flex-direction: column;
+  flex-grow: 1;
+  animation: none;
+}
+
+.pagina.activa {
+  display: flex;
+  animation: pasarPagina 0.4s ease forwards;
+}
+
+/* Transiciones de visibilidad */
+#pantallaInicio {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+#pantallaInicio.oculto {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#libroCompleto {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+#libroCompleto.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Puntos rojos parpadeantes para efecto tipo mapa del merodeador */
+.punto-rojo {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(246, 48, 48, 0.6);
+  border-radius: 50%;
+  animation: parpadeo 3s ease-in-out infinite;
+  filter: blur(1px); /* difumina el punto */
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.774); /* brillo tenue */
+  pointer-events: none;
+  z-index: 20;
+}
+
+@keyframes parpadeo {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+    filter: blur(2px);
+  }
+}
+
+@keyframes subirExpandir {
+  0% {
+    transform: translate(0, 0) scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(60px, -80px) scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-40px, -160px) scale(1.6);
+    opacity: 0;
+  }
+}
+@keyframes moverArriba {
+  0%,
+  100% {
+    transform: translateY(0);
+    transform: translateX(-100px);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+}
+
+@keyframes parpadeo {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.humo-bocanada {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible; /* importante para que el contenido grande no active scroll */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nube {
+  position: absolute;
+  width: 250px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.683) 70%,
+    transparent 70%
+  );
+  overflow: visible;
+  filter: blur(15px);
+  opacity: 0.7;
+  border-radius: 50%;
+  pointer-events: none;
+}
+html,
+body {
+  overflow-x: hidden; /* para que nunca salga scroll horizontal */
+  overflow-y: auto; /* scroll vertical normal */
+}

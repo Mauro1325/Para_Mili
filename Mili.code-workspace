@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../pagina_6_flexbox"
+	},
+	{
+		"path": "../page_5_css"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Mili"
+  }
+}
