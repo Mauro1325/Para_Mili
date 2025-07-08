@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const pantallaInicio = document.getElementById("pantallaInicio");
   const libroCompleto = document.getElementById("libroCompleto");
 
-  // Mostrar una página con animación
   function mostrarPagina(index) {
     paginas.forEach((pagina) => {
       pagina.classList.remove("activa", "animar");
@@ -17,18 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const paginaActualDOM = paginas[index];
     paginaActualDOM.classList.add("activa");
-
-    // Forzar reflow para reiniciar animación
     void paginaActualDOM.offsetWidth;
     paginaActualDOM.classList.add("animar");
 
-    // Mostrar/ocultar flechas
     flechaIzquierda.style.visibility = index === 0 ? "hidden" : "visible";
     flechaDerecha.style.visibility =
       index === paginas.length - 1 ? "hidden" : "visible";
   }
 
-  // Avanzar página
   flechaDerecha.addEventListener("click", () => {
     if (paginaActual < paginas.length - 1) {
       paginaActual++;
@@ -38,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Retroceder página
   flechaIzquierda.addEventListener("click", () => {
     if (paginaActual > 0) {
       paginaActual--;
@@ -48,17 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Mostrar libro al hacer clic en el libro con pluma
   pantallaInicio.addEventListener("click", () => {
     pantallaInicio.classList.add("oculto");
     libroCompleto.classList.add("visible");
     mostrarPagina(paginaActual);
   });
 
-  // Asegura que el libro no sea visible al cargar
   libroCompleto.classList.remove("visible");
 
-  // 🔴 Puntos rojos animados
+  // 🔴 PUNTOS ROJOS
   const cantidadPuntos = 50;
   const separacionMinima = 80;
   const puntos = [];
@@ -91,11 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
     fondo.appendChild(punto);
   }
 
-  // 💨 HUMO DINÁMICO CON GSAP
+  // 💨 NUBES (humo)
   const humoContenedor = document.querySelector(".humo-bocanada");
+  let nubeActivaCount = 0;
+  let intervaloNubes;
+  let animacionActiva = true;
 
-  // Función que crea una nube y la anima con GSAP
   function crearNube(direccionX) {
+    if (nubeActivaCount >= 10) return;
+
     const nube = document.createElement("div");
     nube.classList.add("nube");
 
@@ -105,11 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     nube.style.opacity = "0";
 
     humoContenedor.appendChild(nube);
+    nubeActivaCount++;
 
     const desplazamientoY = -(100 + Math.random() * 300);
     const desplazamientoX = direccionX * (100 + Math.random() * 200);
 
-    // Animación de entrada y movimiento
     gsap.to(nube, {
       x: desplazamientoX,
       y: desplazamientoY,
@@ -118,16 +114,17 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 4 + Math.random() * 2,
       ease: "power2.out",
       onComplete: () => {
-        // Desaparecer suavemente antes de remover
         gsap.to(nube, {
           opacity: 0,
           duration: 1.5,
-          onComplete: () => nube.remove(),
+          onComplete: () => {
+            nube.remove();
+            nubeActivaCount--;
+          },
         });
       },
     });
 
-    // Parpadeo leve en paralelo
     gsap.to(nube, {
       opacity: 0.3,
       duration: 1.5,
@@ -137,9 +134,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Crear una nube hacia la derecha y otra hacia la izquierda cada 1500 ms
-  setInterval(() => {
-    crearNube(2); // nube que se mueve a la derecha
-    crearNube(-2); // nube que se mueve a la izquierda
-  }, 1500);
+  function iniciarNubes() {
+    if (!intervaloNubes) {
+      intervaloNubes = setInterval(() => {
+        if (animacionActiva) {
+          crearNube(2);
+          crearNube(-2);
+        }
+      }, 1500);
+    }
+  }
+
+  function detenerNubes() {
+    clearInterval(intervaloNubes);
+    intervaloNubes = null;
+  }
+
+  // ▶️ Arranca las nubes
+  iniciarNubes();
+
+  // 💤 Pausar/Reanudar nubes según visibilidad
+  document.addEventListener("visibilitychange", () => {
+    animacionActiva = !document.hidden;
+  });
 });
