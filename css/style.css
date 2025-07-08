@@ -107,6 +107,12 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 /* Contorno del libro */
@@ -116,8 +122,8 @@
   display: flex;
   max-width: 600px;
   padding: 10px;
-  margin: 2px;
-  overflow: hidden; /* evita desbordes en el contenedor del libro */
+  margin: 0 auto; /* centrado horizontal si hiciera falta */
+  overflow: hidden;
 }
 
 /* Imagen del libro */
@@ -320,8 +326,66 @@
   border-radius: 50%;
   pointer-events: none;
 }
+
 html,
 body {
-  overflow-x: hidden; /* para que nunca salga scroll horizontal */
-  overflow-y: auto; /* scroll vertical normal */
+  overflow: hidden;
+  height: 100vh;
+}
+@media (max-width: 768px) {
+  .carta {
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .contorno {
+    max-width: 90vw;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .imagen {
+    width: 100%;
+    height: auto;
+  }
+
+  .mensaje {
+    margin: 50px 30px;
+    max-height: calc(100% - 140px);
+    padding-right: 4px;
+  }
+
+  .mensaje h1 {
+    font-size: 40px;
+  }
+
+  .mensaje p {
+    font-size: 16px;
+  }
+
+  .flechas {
+    padding: 0 30px;
+    bottom: 40px;
+  }
+
+  .flecha {
+    width: 50px;
+  }
+
+  .flecha-derecha {
+    left: -10px;
+  }
+
+  .nube {
+    width: 150px;
+    height: 100px;
+    filter: blur(10px);
+  }
 }
