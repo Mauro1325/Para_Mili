@@ -332,6 +332,7 @@ body {
   overflow: hidden;
   height: 100vh;
 }
+
 @media (max-width: 768px) {
   .carta {
     padding: 0;
@@ -357,8 +358,9 @@ body {
   }
 
   .mensaje {
-    margin: 50px 30px;
-    max-height: calc(100% - 140px);
+    /* background-color: #0c2467; */
+    margin: 55px 40px;
+    max-height: calc(100% - 130px);
     padding-right: 4px;
   }
 
@@ -371,16 +373,16 @@ body {
   }
 
   .flechas {
-    padding: 0 30px;
+    padding: 0 40px;
     bottom: 40px;
   }
 
   .flecha {
-    width: 50px;
+    width: 55px;
   }
 
   .flecha-derecha {
-    left: -10px;
+    left: -30px;
   }
 
   .nube {
