@@ -64,7 +64,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: glow 3s ease-in-out infinite;
+  animation: glow 2s ease-in-out infinite;
   transition: opacity 0.5s ease;
 }
 
@@ -96,7 +96,7 @@
     #173c86 75%,
     #18264d 100%
   );
-  animation: glow 2s ease-in-out infinite;
+  animation: glow 1.5s ease-in-out infinite;
 }
 
 /* Contenedor principal de la carta */

@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     humoContenedor.appendChild(nube);
     nubeActivaCount++;
 
-    const desplazamientoY = -(100 + Math.random() * 300);
+    const desplazamientoY = -(100 + Math.random() * 400);
     const desplazamientoX = direccionX * (100 + Math.random() * 200);
 
     gsap.to(nube, {
